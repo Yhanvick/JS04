@@ -1,53 +1,3 @@
-/*
-const products = ["Maruchan", "Dragoncitos", "Chai", "Chips Moradas", "Coca Cola", "Sabritas Rojas", "Mazapan", "ChocoRamo"];
-//console.log(products);
-const scores = [10, 9, 10, 5, 10, -8, 4.5];
-//console.log(scores);
-const randomData = ["User1", 500, true, false];
-//esta forma sera otra de traer todos:
-console.log(products, scores, randomData);
-//los indices es donde se controla la informacion, y en los arrays los indices tiene como inicio el numero cero si quiero acceder a dragoncitos seria el item numero dos. Pero como se inicia desde 0, dragoncitos seria el numero 1 y Chai el 2, por lo tanto tengo que acceder al item que se encuentra en el indice 1. 
-console.log(products[1]);
-//idx=1 esto es el indice 1, puedo indicar indice 0 o 300. Entonces en la linea 9, ya no se va a observar el STRING, que seria el corchete
-//console.log(products[100]); //aqui va a salir undefined
-/*for tiene 3 secciones. La primera ocupa el inicio idx; la segunda parte nos indica cuando nos vamos a detener, o sea nuestro loop, por ejemplo al final de la lista y cuando ya no hayan mas numeros, indicamos que ahi nos vamos a detener, por ejemplo scores.lehgth inicio <= 100
-entonces en el tercer paso es una operacion aritmetica: inicio + 1 como operador aritmetico de suma 
-FOR
-const scores = [10, 9, 10, 5, 10, -8, 4.5, 5.8, -15, -1, 13];  (tengo 11 indices)
-1. mi indice inicial va a ser igual a 0. la palabra index se puede remplazar por la letra i. 
-2. Ahora le tengo que indicar hasta donde terminar hasta que i sea menor o igual a scores.lenght, entonces le estamos indicando a donde parar. Mi maximo es al 11
-3. que tantos saltos voy a dar por cada ciclo (va a ser mi operador de incremento). El operador de incremento (++) incrementa (agrega uno a) su operando y retorna el valor antes o despues del incremento, dependiendo de dónde está posicionado el operador.
-*/
-/*
-for (let i = 0; i <= scores.length -1 ; i++) {
-    console.log(`Index: ${i}, Item: ${scores[i]}`);
-}
-
-//while
-
-//let i = 0;
-while (i < products.length) {
-    console.log(`Product: ${products[i]}`); //"Hola " + nombre == "Hola ${nombre}"
-    i++;
-}
-
-//do while
-let y = 0
-do {
-    console.log(`Current product: ${products[y]}`);
-    y++;
-} while (y < products.length);
-
-// forEach
-randomData.forEach((data) => {
-    console.log(data);
-    })
-    
-randomData.forEach((e, idx, arr) => {
-    console.log(e + arr[idx +1]);
-    })
-scores.forEach((e, idx, arr) => console.log (e + arr [idx + 1]));
-///////////////////////////////
 /* 
 SUMA DE RESISTENCIAS
 Calcula la suma de todas las resistencias conectadas en serie.
@@ -207,3 +157,22 @@ Dada una matriz, devuelva una matriz más corta siguiendo estos pasos:
 Ejemplo:
 - Para la matriz `[1,2,3,5,22,6]` , el resultado debe ser `[3.5, 12, 4]` . */
 
+function promedio(array) {
+    const values = array.length; // con esto se tiene en cuenta la cantidad de elementos en el array
+    const minimum = Math.floor(values / 2); //se calcula el indice de la mitad del array
+    if (values % 2 !== 0) { /*"si" el numero de elementos es impar se elimina el de en medio, != (no igual) y !== (no estrictamente igual), entonces !== 0 si el valor a la izquierda no es estrictamente igual a 0:
+    Si valores % 2 (el resto de dividir valores entre 2) no es 0, entonces valores es impar. Si el resultado es 0, entonces el número es par */
+        array.splice(minimum, 1); // Eliminar el elemento del medio
+    }
+    const result = []; //este array vacio sirve para almacenar los resultados
+    const newValues = array.length; //de esta forma de consideran los items despues de la eliminacion si fue impar
+    for (let i = 0; i < newValues / 2; i++) { //bucle para la sima de elementos de laprimera mitad con los de la segunda mitad pero invertidos accede a los items de modo inverso
+        const suma = array[i] + array[newValues - 1 - i]; // Calcula el promedio dividiendo la suma entre 2 y almacenarlo en el array de resultados, y el ultimo entonces 
+        result.push(suma / 2);
+    }
+    return result;
+}
+
+console.log(promedio([5, 3, 9, 8, 4])); 
+
+//Selene Terrazas
